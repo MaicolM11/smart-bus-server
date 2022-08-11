@@ -1,0 +1,42 @@
+<div id="create-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registrar estudiante</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/student" method="POST">
+                    <div class="form-group">
+                        <label for="code-form" class="col-form-label">Código:</label>
+                        <input type="text" name="code" class="form-control" id="code-form" readonly="readonly" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname-form" class="col-form-label">Nombres:</label>
+                        <input type="text" name="fullname" class="form-control" id="fullname-form" required/>
+                    </div>
+                    <label for="fullname-form" class="col-form-label">Ubicación:</label>
+
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-5">
+                            <input type="text" name="longitude" class="form-control" id="longitude-form" placeholder="Longitud" readonly="readonly" required/>
+                        </div>
+                        <div class="col-md-5">
+                            <input type="text" name="latitude" class="form-control" id="latitude-form" placeholder="Latitud" readonly="readonly" required/>
+                        </div>
+                        <div class="col-md-1">
+                            <a href="#" class="btn btn-info" data-toggle="modal" data-target="#map-modal">Ir</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-success">Registrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'common/map-modal.html' %}

@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<style>
+  .map {
+    height: 530px;
+    width: 100%;
+    border-color: black;
+  }
+</style>
+<div>
+  <center><h3>Posición del bus - Tiempo Real</h3> </center>
+</div>
+
+<div id="map" class="map"></div>
+
+<script 
+      type="text/javascript"
+      src="{{url_for('static', filename='maps.js')}}">
+</script>
+
+{% endblock %}

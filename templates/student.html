@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+{% if message %}
+<div classs="container p-5">
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{message.message}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="True">&times;</span>
+	  </button>
+	</div>
+</div>
+{% endif %}
+<div class="container">
+  </br>
+  <div class="card mx-auto" style="width:90%;">
+    <div class="card-body">
+
+    <div class="d-flex justify-content-around">
+      <p class="font-weight-bold">Cod: </p>
+      <h4 id ="code">0000000</h4>
+      <a href="#" class="btn btn-success" data-toggle="modal" data-target="#create-modal">Agregar</a>
+    </div>
+    </div>
+  </div>
+  </br>
+  </br>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+          <tr>
+            <th class="text-center" colspan="5" scope="colgroup">Estudiantes registrados</th>
+          </tr>
+        <tr>
+          <th scope="col">Código</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Residencia</th>
+          <th scope="col">Transporte</th>
+          <th scope="col">Monitoreo</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for student in students %}
+        {% set ns = namespace(foo="false") %}      
+
+        <tr >
+          <td>{{ student.code }}</td>
+          <td>{{ student.fullname }}</td>
+          <td>{{ student.location.latitude }} lat, {{ student.location.longitude }} lng</td>
+          {% if student.status %}
+          {%set ns.foo = "true" %}
+          {%endif %}
+          <td>{{ student.status }}</td>
+          <td>
+            <button type="button" class="btn btn-info" onclick="showInfo({{ns.foo}})">Info</button>
+          </td>
+        </tr>
+        {% endfor %}    
+      </tbody>
+    </table>
+    </div>
+</div>
+
+
+{% include 'common/new-student.html' %}
+
+<script 
+      type="text/javascript"
+      src="{{url_for('static', filename='student.js')}}">
+</script>
+
+{% endblock %}
